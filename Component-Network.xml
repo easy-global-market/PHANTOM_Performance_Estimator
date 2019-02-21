@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application name="HPC" value="image-processing">
+
+<requirements name="global_requirements" set-by="USER" target="Simons">
+	<non-functional max-value="3500" measurement-unit="s" name="global_WCET" type="execution-time"/> <!-- Performance Requirement (set by USER)-->
+	<monitoring name="global_monitor" type="execution-time"/>	<!-- Monitoring Requirement (set by USER)--> 
+</requirements>
+
+<external-libraries>
+    <source file="MarkReportedShips.cpp" lang="cpp" path="src\mat"/>
+    <source file="Mat.cpp" lang="cpp" path="src\mat"/>
+    <source file="MatFunction.cpp" lang="cpp" path="src\mat"/>
+    <source file="Vec.cpp" lang="cpp" path="src\mat"/>
+    <source file="WriteOutputImage.cpp" lang="cpp" path="src\mat"/>
+    <source file="geocod_utils.cpp" lang="cpp" path="src\mat"/>
+    <source file="simons_utils.cpp" lang="cpp" path="src\mat"/>
+    <source file="input_structs.cpp" lang="cpp" path="src\components_IO"/>
+    <source file="output_structs.cpp" lang="cpp" path="src\components_IO"/>
+    <source file="byte_order.cpp" lang="cpp" path="src\components_IO\serialization"/>
+    <source file="ser_literals.cpp" lang="cpp" path="src\components_IO\serialization"/>
+    <source file="ser_mats.cpp" lang="cpp" path="src\components_IO\serialization"/>
+    <source file="ser_vecs.cpp" lang="cpp" path="src\components_IO\serialization"/>
+    <source file="ser_attMetadata.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_CoastlineSections.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_Detection_const.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_GCPValues.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_ImageBounds.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_Miscellaneous.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_Miscellaneous_const.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_ShipReport.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_Spots.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_SpotsTemp.cpp" lang="cpp" path="src\components_IO\serialization\structs\common"/>
+    <source file="ser_in_ClusterSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_ComputeConfidence.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_DetectSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_MaxLocal.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_MaxLocal2D.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_OrderSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_ShipDetection.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_UpdateShipReport.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_dwt2.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_in_morph_dilate.cpp" lang="cpp" path="src\components_IO\serialization\structs\input"/>
+    <source file="ser_out_ClusterSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_ComputeConfidence.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_DetectSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_MaxLocal.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_MaxLocal2D.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_OrderSpots.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_ShipDetection.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_UpdateShipReport.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_dwt2.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_idwt2.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="ser_out_morph_dilate.cpp" lang="cpp" path="src\components_IO\serialization\structs\output"/>
+    <source file="DataIO.cpp" lang="cpp" path="src\metadata"/>
+    <source file="DataManager.cpp" lang="cpp" path="src\metadata"/>
+    <source file="ReadDataGEOTIFF.cpp" lang="cpp" path="src\metadata"/>
+    <source file="monitoring_utils.cpp" lang="cpp" path="src\monitoring"/>
+</external-libraries>
+    
+<component name="master" type="asynchronous">
+    <PT-parallelisation-directive max_number="64" name="subcomponents" set-by="PT"/> <!-- Component Parallelisation Refinement (set by PT)-->
+    <MBT-estimated-computation-time measurement-unit="ns" value="700"/>  <!-- Estimated Component Computation Time (set by MBT?)-->
+    <MF-monitored-computation-time measurement-unit="ns" value="240"/>
+
+    <requirements name="component_Simons_requirements" set-by="USER" target="Simons">  
+        <non-functional max-value="400" measurement-unit="s" name="Simons_WCET" type="execution-time"/> <!-- Performance Requirement (set by USER)-->
+        <monitoring name="Simons_monitor" type="execution-time"/>	<!-- Monitoring Requirement (set by USER)--> 
+    </requirements>
+	   
+    <source file="simons.cpp" lang="cpp" path="src"/>
+    
+    <devices CPU="yes" GPU="no" FPGA="no"/>
+	
+</component>
+
+
+<component name="slave1" type="asynchronous">
+    <PT-parallelisation-directive max_number="64" name="subcomponents" set-by="PT"/> <!-- Component Parallelisation Refinement (set by PT)-->
+    <MBT-estimated-computation-time measurement-unit="ns" value="700"/>  <!-- Estimated Component Computation Time (set by MBT?)-->
+    <MF-monitored-computation-time measurement-unit="ns" value="240"/>
+
+    <requirements name="component_ShipDetection_requirements" set-by="USER" target="ShipDetection">  
+        <non-functional max-value="800" measurement-unit="s" name="ShipDetection_WCET" type="execution-time"/> <!-- Performance Requirement (set by USER)-->
+        <monitoring name="ShipDetection_monitor" type="execution-time"/>	<!-- Monitoring Requirement (set by USER)--> 
+    </requirements>
+	
+    <source file="ShipDetection.cpp" lang="cpp" path="src\components"/>
+	
+</component>
+
+
+<component name="slave2" type="asynchronous">
+    <PT-parallelisation-directive max_number="64" name="subcomponents" set-by="PT"/> <!-- Component Parallelisation Refinement (set by PT)-->
+    <MBT-estimated-computation-time measurement-unit="ns" value="700"/>  <!-- Estimated Component Computation Time (set by MBT?)-->
+    <MF-monitored-computation-time measurement-unit="ns" value="240"/>
+
+    <requirements name="component_UpdateShipReport_requirements" set-by="USER" target="UpdateShipReport">  
+        <non-functional max-value="400" measurement-unit="s" name="UpdateShipReport_WCET" type="execution-time"/> <!-- Performance Requirement (set by USER)-->
+        <monitoring name="UpdateShipReport_monitor" type="execution-time"/>	<!-- Monitoring Requirement (set by USER)--> 
+    </requirements>
+        
+    <source file="UpdateShipReport.cpp" lang="cpp" path="src\components"/>
+
+</component>
+
+<!-- ===================================Communication objects description============================================================== -->
+<comm-object name="InputSD" object-class="FIFO" item-size="16793807" size="5" type="Queue">
+    <requirements name="InputSD_requirements" set-by="USER" target="InputSD">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="master" port-name="inInputSD" type="in"/>
+    <target name="slave1" port-name="outInputSD" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputUSR" object-class="FIFO" item-size="11055" size="5" type="Queue">
+    <requirements name="InputUSR_requirements" set-by="USER" target="InputUSR">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="slave1" port-name="inInputUSR" type="in"/>
+    <target name="slave2" port-name="outInputUSR" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputUSR" object-class="FIFO" item-size="120016" size="5" type="Queue">
+    <requirements name="OutputUSR_requirements" set-by="USER" target="OutputUSR">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="master" port-name="inOutputUSR" type="in"/>
+    <target name="slave2" port-name="outOutputUSR" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputMORPH_DILATE1" object-class="FIFO" item-size="4208489" size="5" type="Queue">
+    <requirements name="InputIM_requirements" set-by="USER" target="InputMORPH_DILATE1">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="DetectSpots" port-name="inInputIM" type="in"/>
+    <target name="Morph_dilate1" port-name="outInputIM" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputMORPH_DILATE1" object-class="FIFO" item-size="4194316" size="5" type="Queue">
+    <requirements name="OutputIM_requirements" set-by="USER" target="OutputMORPH_DILATE1">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="Morph_dilate1" port-name="inOutputIM" type="in"/>
+    <target name="DetectSpots" port-name="outOutputIM" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputMORPH_DILATE2" object-class="FIFO" item-size="4208489" size="5" type="Queue">
+    <requirements name="InputIM2_requirements" set-by="USER" target="InputMORPH_DILATE2">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ComputeConfidence" port-name="inInputIM" type="in"/>
+    <target name="Morph_dilate2" port-name="outInputIM" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputMORPH_DILATE2" object-class="FIFO" item-size="4194316" size="5" type="Queue">
+    <requirements name="OutputIM2_requirements" set-by="USER" target="OutputMORPH_DILATE2">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="Morph_dilate2" port-name="inOutputIM" type="in"/>
+    <target name="ComputeConfidence" port-name="outOutputIM" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputDS" object-class="FIFO" item-size="20976285" size="5" type="Queue">
+    <requirements name="InputDS_requirements" set-by="USER" target="InputDS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ShipDetection" port-name="inInputDS" type="in"/>
+    <target name="DetectSpots" port-name="outInputDS" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputDS" object-class="FIFO" item-size="16060" size="5" type="Queue">
+    <requirements name="OutputDS_requirements" set-by="USER" target="OutputDS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="DetectSpots" port-name="inOutputDS" type="in"/>
+    <target name="ShipDetection" port-name="outOutputDS" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputCS" object-class="FIFO" item-size="16803568" size="5" type="Queue">
+    <requirements name="InputCS_requirements" set-by="USER" target="InputCS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ShipDetection" port-name="inInputCS" type="in"/>
+    <target name="ClusterSpots" port-name="outInputCS" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputCS" object-class="FIFO" item-size="23945" size="5" type="Queue">
+    <requirements name="OutputCS_requirements" set-by="USER" target="OutputCS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ClusterSpots" port-name="inOutputCS" type="in"/>
+    <target name="ShipDetection" port-name="outOutputCS" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputOS" object-class="FIFO" item-size="2175993" size="5" type="Queue">
+    <requirements name="InputOS_requirements" set-by="USER" target="InputOS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ShipDetection" port-name="inInputOS" type="in"/>
+    <target name="OrderSpots" port-name="outInputOS" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputOS" object-class="FIFO" item-size="20440" size="5" type="Queue">
+    <requirements name="OutputOS_requirements" set-by="USER" target="OutputOS">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="OrderSpots" port-name="inOutputOS" type="in"/>
+    <target name="ShipDetection" port-name="outOutputOS" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputCC" object-class="FIFO" item-size="20988781" size="5" type="Queue">
+    <requirements name="InputCC_requirements" set-by="USER" target="InputCC">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ShipDetection" port-name="inInputCC" type="in"/>
+    <target name="ComputeConfidence" port-name="outInputCC" type="out"/>
+</comm-object>
+
+
+<comm-object name="OutputCC" object-class="FIFO" item-size="1900" size="5" type="Queue">
+    <requirements name="OutputCC_requirements" set-by="USER" target="OutputCC">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="ComputeConfidence" port-name="inOutputCC" type="in"/>
+    <target name="ShipDetection" port-name="outOutputCC" type="out"/>
+</comm-object>
+
+
+<comm-object name="InputIDWT2" object-class="FIFO" item-size="33554457" size="5" type="Queue">
+    <requirements name="InputIDWT2_requirements" set-by="USER" target="InputIDWT2">  
+        <data-integrity measurement-unit="data" value="true"/> <!-- Security Requirement (set by USER)-->
+    </requirements>
+
+    <PT-access-number set-by="PT" value="64"/>	<!-- Number of Writes & Reads (set by PT)-->
+
+    <source name="DetectSpots" port-name="inInputIDWT2" type="in"/>
+    <target name="" port-name="outInputIDWT2" type="out"/>
+</comm-object>
+
+</application>

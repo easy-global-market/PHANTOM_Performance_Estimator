@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<PerformanceEstimation application_name="HPC">
+	<EstimationResult energy_consumption="61998.0" execution_time="2287.0" ram_usage="11134.0"/>
+	<ReferenceMapping>
+		<EstimationResult component_name="master" target_hardware="CPU_Unit2"/>
+		<EstimationResult component_name="slave1" target_hardware="GPU_Unit1"/>
+		<EstimationResult component_name="slave2" target_hardware="GPU_Unit1"/>
+	</ReferenceMapping>
+</PerformanceEstimation>

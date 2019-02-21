@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<TestedComponents>
+	<TestedComponent application_name="HPC" component_name="master">
+		<PerformanceMetric energy_consumption="1010" execution_time="108" hardware="CPU_Unit1" ram_usage="2130"/>
+		<PerformanceMetric energy_consumption="1198" execution_time="105" hardware="CPU_Unit2" ram_usage="1937"/>
+	</TestedComponent>
+	<TestedComponent application_name="HPC" component_name="slave1">
+		<PerformanceMetric energy_consumption="2962" execution_time="202" hardware="GPU_Unit1" ram_usage="4752"/>
+		<PerformanceMetric energy_consumption="2456" execution_time="273" hardware="GPU_Unit2" ram_usage="4398"/>
+	</TestedComponent>
+	<TestedComponent application_name="HPC" component_name="slave2">
+		<PerformanceMetric energy_consumption="32120" execution_time="3382" hardware="CPU_Unit1" ram_usage="3732"/>
+		<PerformanceMetric energy_consumption="28320" execution_time="1980" hardware="GPU_Unit1" ram_usage="1254"/>
+	</TestedComponent>
+	<TestedComponent application_name="Surveillance" component_name="detect_spots">
+		<PerformanceMetric energy_consumption="1030" execution_time="138" hardware="CPU_Unit1" ram_usage="2130"/>
+		<PerformanceMetric energy_consumption="1158" execution_time="125" hardware="CPU_Unit2" ram_usage="1937"/>
+	</TestedComponent>
+	<TestedComponent application_name="Surveillance" component_name="max_local">
+		<PerformanceMetric energy_consumption="2662" execution_time="222" hardware="GPU_Unit1" ram_usage="4752"/>
+		<PerformanceMetric energy_consumption="2456" execution_time="223" hardware="GPU_Unit2" ram_usage="4398"/>
+	</TestedComponent>
+	<TestedComponent application_name="Surveillance" component_name="cluster_spots">
+		<PerformanceMetric energy_consumption="2212" execution_time="3382" hardware="CPU_Unit1" ram_usage="3732"/>
+		<PerformanceMetric energy_consumption="1832" execution_time="1980" hardware="GPU_Unit1" ram_usage="1254"/>
+	</TestedComponent>
+	<TestedComponent application_name="Telecom" component_name="adc">
+		<PerformanceMetric energy_consumption="1034" execution_time="538" hardware="CPU_Unit1" ram_usage="1131"/>
+		<PerformanceMetric energy_consumption="1155" execution_time="525" hardware="CPU_Unit2" ram_usage="937"/>
+	</TestedComponent>
+	<TestedComponent application_name="Telecom" component_name="atpc">
+		<PerformanceMetric energy_consumption="2662" execution_time="522" hardware="GPU_Unit1" ram_usage="3754"/>
+		<PerformanceMetric energy_consumption="2476" execution_time="523" hardware="GPU_Unit2" ram_usage="3397"/>
+	</TestedComponent>
+	<TestedComponent application_name="Telecom" component_name="rsl">
+		<PerformanceMetric energy_consumption="2812" execution_time="5382" hardware="CPU_Unit1" ram_usage="4731"/>
+		<PerformanceMetric energy_consumption="1932" execution_time="3980" hardware="GPU_Unit1" ram_usage="2253"/>
+	</TestedComponent>
+</TestedComponents>
