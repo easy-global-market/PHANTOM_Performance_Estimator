@@ -1,5 +1,5 @@
 # PerformanceEstimator
-This is the python code to implement the Performance Estimation activitiy in PHANTOM project. 
+This is the python code (v3.7.2) to implement the Performance Estimation activitiy in PHANTOM project. 
 
 Performance estimation estimates the non-functional properties (e.g., execution time, energy consumption) of newly designed applications by analyzing PHANTOM component network and previous non-functional testing results.
 The input is the xml file of the "ComponentNetwork" of an application describing the inner components and their communications following PHANTOM specification, while the output is the estimation result to terminal and destination xml file. No external framework is needed to support the execution.
