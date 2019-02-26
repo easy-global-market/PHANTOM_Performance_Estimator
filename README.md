@@ -7,14 +7,14 @@ The input is the xml file of the "ComponentNetwork" of an application describing
 After downloading the code, the performance estimator can be run by using the following command, where [input_component_network] is the input component network with full name and path.
 
 	python PerformanceEstimator.py [input_component_network]
+
 	
+Sometimes you need to replace the python by python3 in the above command if you have several versions of python installed. 
 The following two variables can be configured at the beginnig of the source code in PerformanceEstimator.py file:
 	
 	tested_component_results_file_path
 	output_estimation_result_file_path
 The "tested_component_results_file_path" indicates where the previous testing result file can be found to support the performance estimation, and the "output_estimation_result_file_path" indiciates the target file to store the performance estimation result. 
-
-A
 
 	
 	
